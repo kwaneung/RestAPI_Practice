@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.UserMapper">
+
+    <select id="getUserList" resultType="UserVo">
+        select * from user
+    </select>
+
+    <insert id="insertUser">
+        insert into user value(#{cust_no}, #{name}, #{sex}, #{age}, #{tellPh})
+    </insert>
+
+    <delete id="deleteUser">
+        delete from user where cust_no = #{cust_no}
+    </delete>
+
+    <delete id="updateUser">
+        update user set name = #{name}, sex = #{sex}, age = #{age}, tellPh = #{tellPh} where cust_no = #{cust_no}
+    </delete>
+
+    <select id="getMaxSeq" resultType="String">
+        select ifnull(max(cust_no), 0) + 1 from user
+    </select>
+
+</mapper>
