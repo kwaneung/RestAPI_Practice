@@ -20,10 +20,10 @@ public class UserController {
 
         Map<String, Object> result = new HashMap<>();
 
-        try{
+        try {
             apiservice.postService(userVo);
             result.put("code", "0000");
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             result.put("code", "9999");
         }
@@ -33,16 +33,29 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public Map<String, Object> userAjaxGet() {
+    public Map<String, Object> userAjaxGet(UserVo userVo) {
         System.out.println("========== /user GET Controller Start ==========");
+
+        System.out.println(userVo.getCust_no());
+        System.out.println(userVo.getName());
+        System.out.println(userVo.getSex());
+        System.out.println(userVo.getAge());
+        System.out.println(userVo.getTellPh());
 
         Map<String, Object> result = new HashMap<>();
         List<UserVo> userVoList = new ArrayList<>();
 
-        try{
-            userVoList = apiservice.getService();
-            result.put("code", "0000");
-        } catch (Exception e){
+        try {
+            if (userVo.getCust_no() == null) {
+                System.out.println("userVo is null");
+                userVoList = apiservice.getService();
+                result.put("code", "0000");
+            } else {
+                System.out.println("userVo is not null");
+            }
+
+            //Thread.sleep(3000);
+        } catch (Exception e) {
             e.printStackTrace();
             result.put("code", "9999");
         }
@@ -60,10 +73,10 @@ public class UserController {
 
         Map<String, Object> result = new HashMap<>();
 
-        try{
+        try {
             apiservice.deleteService(userVo);
             result.put("code", "0000");
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             result.put("code", "9999");
         }
@@ -78,10 +91,10 @@ public class UserController {
 
         Map<String, Object> result = new HashMap<>();
 
-        try{
+        try {
             apiservice.putService(userVo);
             result.put("code", "0000");
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             result.put("code", "9999");
         }
