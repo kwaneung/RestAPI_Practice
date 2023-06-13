@@ -6,8 +6,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
-    @GetMapping("/")
+    @GetMapping("/hello")
     public ModelAndView SelectAllFromUser() {
         return new ModelAndView("hello");
+    }
+
+    @GetMapping("/")
+    public ModelAndView root() {
+        return new ModelAndView("index");
     }
 }
